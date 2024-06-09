@@ -1,19 +1,26 @@
 {
-  "turmas": [
-    
+  "Turmas": [
+    {
+      "id": "8592",
+      "NomeTurma": "teste1",
+      "category": {
+        "id": "1",
+        "category": "1°DS"
+      }
+    }
   ],
-  "sigla": [
+  "Siglas": [
     {
       "id": "1",
-      "name": "1° DSN"
+      "Sala": "1°DS"
     },
     {
       "id": "2",
-      "name": "2° DSN"
+      "Sala": "2°DS"
     },
     {
       "id": "3",
-      "name": "3° DSN"
+      "Sala": "3°DS"
     }
   ]
 }
