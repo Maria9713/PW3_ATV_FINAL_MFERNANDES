@@ -5,8 +5,8 @@ import logo from '../img/logo4.png';
 
 const pages = [
   { name: 'Home', path: '/' },
-  { name: 'Cadastrar', path: './Cadastrar' },
-  { name: 'Turmas', path: './turmas' }
+  { name: 'Cadastrar', path: '/Cadastrar' },
+  { name: 'Turmas', path: '/Turmas' }
 ];
 
 function ResponsiveAppBar() {

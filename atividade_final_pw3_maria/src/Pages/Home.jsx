@@ -1,18 +1,19 @@
 import React from 'react';
-import Menu from '../Components/Menu'; // Verifique o caminho correto do arquivo, se necessário
+import Menu from '../Components/Menu'; 
 import { Typography, Container, Grid, Button, Box } from '@mui/material';
-import { useNavigate } from 'react-router-dom'; // Certifique-se de que está usando react-router-dom v6 ou superior
-import logo from '../img/logo5.png'; // Verifique o caminho correto da imagem
+import { useNavigate } from 'react-router-dom'; 
+import logo from '../img/logo5.png'; 
+import Btn from '../Components/Btn';
 
 const Home = () => {
   const navigate = useNavigate();
 
   const handleCadastroClick = () => {
-    navigate('./Cadastrar'); // Verifique o caminho correto da rota "Cadastrar"
+    navigate('./Cadastrar'); 
   };
 
   return (
-    <div style={{ backgroundColor: '#333', color: 'white', minHeight: '100vh' }}> {/* Cor alterada */}
+    <div style={{ backgroundColor: '#333', color: 'white', minHeight: '100vh' }}> 
       <Menu />
       <Container sx={{ paddingTop: 4, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <Grid container spacing={4} alignItems="center">
@@ -30,19 +31,7 @@ const Home = () => {
             <Typography variant="body1" sx={{ marginBottom: 4 }}>
               Preparado para iniar uma nova turma?
             </Typography>
-            <Button variant="contained" color="primary" onClick={handleCadastroClick}sx={{ 
-                 backgroundColor: 'white', // Cor de fundo
-                 color: 'black', // Cor do texto
-                 fontWeight: 'bold', // Negrito
-                 transition: '0.3s', // Transição suave
-                 '&:hover': { 
-                   backgroundColor: '#ffffff', // Cor de fundo ao passar o mouse
-                   color: '#001', // Cor do texto ao passar o mouse
-                   transform: 'scale(1.1)' // Aumenta o tamanho ao passar o mouse
-                 } 
-              }}>
-              Cadastrar Turma
-            </Button>
+            <Btn onClick={handleCadastroClick}>Cadastrar Nova Turma</Btn>
           </Grid>
         </Grid>
       </Container>

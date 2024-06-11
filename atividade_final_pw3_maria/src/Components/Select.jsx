@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
-export default function SelectSala({ id, options, text, label, handlerOnChange, Typography }) {
+export default function SelectSala({ id, name, options, text, label, handlerOnChange, Typography }) {
   const [selectedOptionId, setSelectedOptionId] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -30,6 +30,7 @@ export default function SelectSala({ id, options, text, label, handlerOnChange, 
         </InputLabel>
         <Select
           labelId={id}
+          name={name}
           id={id}
           value={selectedOptionId}
           onChange={handleChange}

@@ -7,11 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import logo from '../img/logo5.png';
 import Select from '../Components/Select';
 import Input from '../Components/input';
+import Btn from '../Components/Btn';
 
 const Cadastrar = () => {
   const [itens, setItens] = useState([]);
   const [sala, setSala] = useState({});
   const navigate = useNavigate("")
+
 
   useEffect(() => {
 
@@ -64,12 +66,14 @@ const Cadastrar = () => {
       axios.post('http://localhost:5000/Turmas', sala)
       .then((response)=>{
           console.log(response.data)
-          navigate('/ListarTurmas', {state: 'Sala cadastrada com sucesso!'})
+          navigate('/Turmas', {state: 'Sala cadastrada com sucesso!'})
       })
       .catch((error)=>{
           console.log(error)
       })
   }
+
+
   
 
   return (
@@ -101,25 +105,7 @@ const Cadastrar = () => {
               handlerOnChange={handleClassroom}
             />
             <div style={{ textAlign: 'center' }}>
-            <Button
-              variant="contained"
-              color="primary"
-              type='submit'
-              sx={{
-                mt: 2,
-                backgroundColor: 'white',
-                color: 'black',
-                fontWeight: 'bold',
-                transition: '0.3s',
-                '&:hover': {
-                  backgroundColor: '#ffffff',
-                  color: '#001',
-                  transform: 'scale(1.1)'
-                }
-              }}
-            >
-              Cadastrar Turma
-            </Button>
+            <Btn type="submit" >Cadastrar Turma</Btn>
             </div>
             </form>
           </Grid>
