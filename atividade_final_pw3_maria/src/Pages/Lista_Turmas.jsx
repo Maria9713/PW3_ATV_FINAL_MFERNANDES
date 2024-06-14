@@ -1,6 +1,6 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import axios from 'axios';
 import Message from '../Components/Mensagem/mensagem';
 import CardSala from '../Components/CardSala';
 import { Typography, Container, Box } from '@mui/material';

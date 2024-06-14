@@ -1,14 +1,6 @@
 {
   "Turmas": [
     {
-      "id": "6161",
-      "NomeTurma": "turma 2",
-      "category": {
-        "id": "2",
-        "category": "2°DS"
-      }
-    },
-    {
       "id": "612a",
       "NomeTurma": "teste3",
       "category": {
@@ -21,6 +13,14 @@
       "category": {
         "id": "1",
         "category": "1°DS"
+      }
+    },
+    {
+      "id": "6b7d",
+      "NomeTurma": "turma 1",
+      "category": {
+        "id": "3",
+        "category": "3°DS"
       }
     }
   ],

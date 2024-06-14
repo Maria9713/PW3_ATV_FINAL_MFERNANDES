@@ -3,7 +3,7 @@ import Menu from '../Components/Menu';
 import { Typography, Container, Grid } from '@mui/material';
 import { useParams, useNavigate } from 'react-router-dom';
 import logo from '../img/logo5.png';
-import Select from '../Components/Select';
+import SelectSala from '../Components/Select';
 import Input from '../Components/input';
 import Btn from '../Components/Btn';
 
@@ -11,38 +11,32 @@ const Edt_turma = () => {
     const [itens, setItens] = useState([]);
 
     const { id } = useParams();
-    console.log('ID' + id)
+    console.log('ID: ' + id);
 
     const navigate = useNavigate();
 
-    const [sala, setSala] = useState({ });
+    const [sala, setSala] = useState({ NomeTurma: '', category: { id: '', category: '' } });
 
     useEffect(() => {
-        fetch(
-            'http://localhost:5000/Siglas',
-            {
-            method:'GET',
-            headers:{
-                'Content-Type':'application/json'
+        fetch('http://localhost:5000/Siglas', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
             }
-        }).then(
-            (response) => response.json()
-        ).then(
-            (data) => {
+        }).then((response) => response.json()).then((data) => {
             setItens(data);
             console.log(data);
-        }
-        ).catch((error) => {
+        }).catch((error) => {
             console.log(`Não foi possível fazer o fetch do conteúdo: ${error}`);
         });
-    }, [id]);
+    }, []);
 
     useEffect(() => {
         fetch(`http://localhost:5000/Turmas/${id}`, {
             method: 'GET',
-                headers: {
-                'Content-Type' : 'application.json'
-                },
+            headers: {
+                'Content-Type': 'application/json'
+            },
         })
         .then((resp) => resp.json())
         .then((data) => {
@@ -52,28 +46,27 @@ const Edt_turma = () => {
         .catch((err) => {
             console.log(err);
         });
-    }, []);
+    }, [id]);
 
     function handleItens(event) {
-        // event.preventDefault();
-        setSala({ ...sala, category: { id: event.target.name, category: event.target.options[event.target.selectedIndex].text } });
-        
+        const { name, value, text } = event.target;
+        setSala(prevSala => ({ ...prevSala, category: { id: value, category: text } }));
     }
 
     function handleClassroom(event) {
-        setSala({ ...sala, [event.target.id]: event.target.value });
-        console.log(sala)
+        const { id, value } = event.target;
+        setSala(prevSala => ({ ...prevSala, [id]: value }));
     }
 
     function editSala(turma) {
-        fetch(`http://localhost:5000/Turmas/${turma.id}`, {
+        fetch(`http://localhost:5000/Turmas/${id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(turma)
         })
         .then((resp) => resp.json())
         .then(() => {
-            navigate('/Lista', { state: 'Turma alterada com sucesso!' });
+            navigate('/Turmas', { state: 'Turma alterada com sucesso!' });
         })
         .catch((err) => console.log(err));
     }
@@ -87,15 +80,11 @@ const Edt_turma = () => {
         <div style={{ backgroundColor: '#333', color: 'white', minHeight: '100vh' }}>
             <Menu />
             <Container sx={{ paddingTop: 4, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-
                 <Grid container spacing={4} alignItems="center">
-
                     <Grid item xs={12} md={6}>
                         <img src={logo} alt="Descrição da imagem" style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
                     </Grid>
-
                     <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-
                         <form onSubmit={submit}>
                             <Typography variant="h4" sx={{ fontWeight: 'bold', marginBottom: '20px', mb: 5 }}>Editar Turma</Typography>
                             <Typography>Digite um nome para a turma :</Typography>
@@ -106,22 +95,18 @@ const Edt_turma = () => {
                                 value={sala.NomeTurma}
                                 onChange={handleClassroom}
                             />
-
                             <Typography sx={{ mt: 3 }}>Selecione a sigla da turma :</Typography>
-
-                            <Select
+                            <SelectSala
                                 id="turmas"
+                                name="turmas"
                                 options={itens}
+                                text="Selecione"
                                 label="Siglas das turmas"
-                                // value={sala.category.id}
-                                onChange={handleItens}
+                                handlerOnChange={handleItens}
                             />
-
                             <div style={{ textAlign: 'center' }}>
-                                <Btn type="submit" >Editar Turma</Btn>
+                                <Btn type="submit">Editar Turma</Btn>
                             </div>
-
-                                    
                         </form>
                     </Grid>
                 </Grid>
