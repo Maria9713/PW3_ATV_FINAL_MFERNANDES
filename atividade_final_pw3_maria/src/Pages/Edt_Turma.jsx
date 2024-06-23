@@ -49,12 +49,36 @@ const Edt_turma = () => {
     }, [id]);
 
     function handleItens(event) {
-        const { name, value, text } = event.target;
-        setSala(prevSala => ({ ...prevSala, category: { id: value, category: text } }));
+        if (!event || !event.target) {
+            console.error("O event ou event.target está undefined", event);
+            return;
+        }
+
+        const { name, value } = event.target;
+        if (!name) {
+            console.error("O event.target.name está undefined", event.target);
+            return;
+        }
+
+        const categoryText = event.target.options[event.target.selectedIndex].text;
+
+        console.log("Name:", name, "Value:", value, "Category Text:", categoryText);
+        setSala(prevSala => ({ ...prevSala, category: { id: value, category: categoryText } }));
     }
 
     function handleClassroom(event) {
+        if (!event || !event.target) {
+            console.error("O event ou event.target está undefined", event);
+            return;
+        }
+
         const { id, value } = event.target;
+        if (!id) {
+            console.error("O event.target.id está undefined", event.target);
+            return;
+        }
+
+        console.log("ID:", id, "Value:", value);
         setSala(prevSala => ({ ...prevSala, [id]: value }));
     }
 

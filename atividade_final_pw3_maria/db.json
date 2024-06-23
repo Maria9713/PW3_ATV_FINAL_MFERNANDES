@@ -22,6 +22,14 @@
         "id": "3",
         "category": "3°DS"
       }
+    },
+    {
+      "id": "5206",
+      "NomeTurma": "teste2",
+      "category": {
+        "id": "3",
+        "category": "3°DS"
+      }
     }
   ],
   "Siglas": [
